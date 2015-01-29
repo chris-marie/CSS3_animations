@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        div {
+            height: 200px;
+            width: 200px;
+            background-color: red;
+            margin: 100px auto;
+            transition: background-color 500ms ease;
+        }
+        .darker {
+            background-color: darkred;
+            transition: background-color 500ms ease 2000ms;
+        }
+        .green {
+            background-color: darkred;
+            transition: background-color 500ms ease;
+        }
+    </style>
+    <script>
+        // transition is an animation with its initial state defined
+
+        document.addEventListener('DOMContentLoaded',function () {
+            var div = document.querySelector('div');
+            div.addEventListener('click', function () {
+                this.classList.toggle('darker');
+            });
+        });
+
+        function Square(element) {
+            this.element = element;
+            this.color = this.element.style.backgroundColor;
+            this.transition = this.element.style.transition;
+            this.darken = {
+
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<div></div>
+</body>
+</html>
