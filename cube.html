@@ -7,15 +7,17 @@
         body {
             height: 100vh;
             background-color: white;
+            perspective: 600px;
         }
         #container {
             left: calc(50vw - 100px);
             top: 25vh;
             position: absolute;
             transform-origin: 0px 0px -100px;
-            animation: kf 4s ease infinite;
-            perspective: 600px;
             transform-style: preserve-3d;
+        }
+        div.animate {
+            animation: kf 4s infinite linear;
         }
         #container, div {
             transform-origin: 50% 50% 0px;
@@ -24,35 +26,39 @@
             width: 200px;
             border: white;
             border-radius: 2px;
-            transition: transform 300ms ease;
+            transition: transform 3s ease;
             font-size: 1.2em;
             text-align: center;
             line-height: 200px;
         }
         div.back {
-            transform: translateZ(-110px);
+            transform: translateZ(-100px);
             background-color: rgba(255,0,0,0.5);
+            transform-origin: 0 0 100px;
         }
         div.front {
-            transform: translateZ(110px);
+            transform: translateZ(100px);
             background-color: rgba(0,0,255,0.5);
+            transform-origin: 0 0 -100px;
         }
         div.bottom {
-            transform: rotateX(90deg) translateZ(-110px);
+            transform: rotateX(90deg) translateZ(-100px);
             background-color: rgba(0,255,0,0.5);
+            transform-origin: 0 100px 0px;
         }
         div.top {
-            transform: rotateX(90deg) translateZ(110px);
+            transform-origin: 100px;
+            transform: rotateX(90deg) translateZ(100px);
             background-color: rgba(0,255,255,0.5);
         }
         div.left {
-
-            transform: rotateY(90deg) translateZ(-110px);
+            transform-origin: 100px 0 0px;
+            transform: rotateY(90deg) translateZ(-100px);
             background-color: rgba(255,255,0,0.5);
         }
         div.right {
-
-            transform: rotateY(90deg) translateZ(110px);
+            transform-origin: 100px 0 0px;
+            transform: rotateY(90deg) translateZ(100px);
             background-color: rgba(150,4,255,0.5);
         }
 
@@ -65,7 +71,15 @@
             }
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded',function () {
+            div = document.querySelector('#container');
 
+            document.body.addEventListener('click', function () {
+                div.classList.toggle('animate');
+            });
+        });
+    </script>
 </head>
 <body>
 <div id="container">
