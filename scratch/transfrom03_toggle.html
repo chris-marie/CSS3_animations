@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-        html, body {
-            height: 100%;
-        }
         div {
             height: 200px;
             width: 200px;
@@ -14,13 +11,13 @@
             margin: 100px auto;
             transition: background-color 500ms ease;
         }
-        .darker {
-            background-color: darkred;
-            transition: background-color 500ms ease 2000ms;
-        }
-        .green {
+        div.darker {
             background-color: darkred;
             transition: background-color 500ms ease;
+        }
+        div.green {
+            background-color: darkred;
+            transition: background-color 500ms ease 100ms;
         }
     </style>
     <script>
@@ -33,7 +30,7 @@
             });
         });
 
-        function Square(element) {
+       /* function Square(element) {
             this.element = element;
             this.color = this.element.style.backgroundColor;
             this.transition = this.element.style.transition;
@@ -41,6 +38,7 @@
 
             }
         }
+        */
 
 
     </script>

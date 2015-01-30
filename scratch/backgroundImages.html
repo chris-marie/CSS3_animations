@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body {
+            height: 100%;
+        }
+        body {
+            background-image: url(Sarah_Kerrigan.png), url(space.jpg);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 15%, cover;
+        }
+
+        body.apply_animation {
+            animation: kf_click 3s ease infinite alternate 1s;
+        }
+        @keyframes kf_click {
+            0% {
+                background-position: center center, center center;
+            }
+            25% {
+                background-position: 10% 10%, 30% 30%
+            }
+            50% {
+                background-position: 40% 70%, 60% 63%;
+            }
+            75% {
+                background-position: 75% 80%, 65% 65%
+            }
+            100% {
+                background-position: 30% 40%, center center;
+            }
+        }
+    </style>
+    <script>
+        function moveHandler (event) {
+            var x = event.clientX;
+            var y = event.clientY;
+
+            this.style.backgroundPosition = (x - 126) + 'px ' + (y - 203) + 'px, center center';
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            document.body.addEventListener('mousemove',moveHandler );
+
+            document.body.addEventListener('click',function () {
+                this.removeEventListener('mousemove', moveHandler);
+
+                this.classList.toggle('apply_animation');
+
+
+            });
+
+            // todo add scroll event to make her larger and smaller
+
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

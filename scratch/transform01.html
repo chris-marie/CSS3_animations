@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        div {
+            height: 200px;
+            width: 200px;
+            background-color: darkred;
+            margin: 100px auto;
+
+            /* transform: translate(100px); */
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded',function() {
+            var square = document.querySelector('#square');
+
+            var maxAngle = 45;
+            var curAngle = 0;
+            var timeInt = 10;
+
+            square.addEventListener('click',function () {
+
+
+                // rotateOnClick();
+                // square.style.transform = 'rotate(45deg)';
+            });
+            square.addEventListener('mouseenter',function (){
+                var cur = 0;
+                var intervalid = setInterval(function () {
+                    square.style.transform = 'rotate(' + cur++ + 'deg)';
+                }, 100);
+                square.addEventListener('mouseleave', function () {
+                    clearInterval(intervalid);
+                    square.removeEventListener('mouseeneter');
+                })
+            });
+
+            function rotateOnClick () {
+                var intervalid = setInterval(function () {
+                    if (curAngle > maxAngle){
+                        clearInterval(intervalid);
+                    } else {
+                        curAngle ++;
+                        square.style.transform = 'rotate(' + curAngle + 'deg)';
+                    }
+                },timeInt);
+            }
+
+        });
+    </script>
+</head>
+<body>
+<div id="square"></div>
+</body>
+</html>

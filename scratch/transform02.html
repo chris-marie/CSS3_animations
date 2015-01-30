@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        div.square {
+            height: 200px;
+            width: 200px;
+            background-color: darkred;
+            margin: 300px auto;
+        }
+        .btn {
+            padding: 2em;
+            color: darkgreen;
+            background-color: palegreen;
+            border-radius: 2px;
+            width: 3em;
+            text-align: center;
+        }
+
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded',function () {
+            var square = document.querySelector('.square');
+            var btn = document.querySelector('#start_stop');
+
+            btn.addEventListener('click',function () {});
+
+            // todo: implement start/stop button
+            // todo: refactor into object oriented;
+
+            function Transform (element) {
+                this.element = element;
+
+            }
+
+            square.addEventListener('click',function () {
+                var curPos = 0;
+                var toRight = true;
+                var curAngle = 0;
+                var curScale = 1;
+                var timeInt = 10;
+                var bounds = {
+                    right: 300,
+                    left: -300
+                };
+                var expand = true;
+                var expandBounds = 2;
+
+                function updateTransform () {
+                    square.style.transform = 'translate(' + curPos + 'px) rotate(' + curAngle + 'deg) scale(' + curScale + ')';
+                }
+                function updatePosition () {
+                    if(toRight) {
+                        curPos++;
+                        if(curPos > bounds.right) {
+                            curPos = bounds.right;
+                            toRight = false;
+                        } else {
+                            updateTransform();
+                        }
+                    } else {
+                        curPos--;
+                        if(curPos < bounds.left) {
+                            curPos = bounds.left;
+                            toRight = true;
+                        } else {
+                            updateTransform();
+                        }
+                    }
+                }
+
+                function updateAngle() {
+                    curAngle++;
+                    curAngle = curAngle > 360 ? 1 : curAngle;
+                    updateTransform();
+                }
+
+                function updateScale() {
+                    if(expand) {
+                        curScale += 0.01;
+                        if(curScale > expandBounds) {
+                            curScale = expandBounds;
+                            expand = false;
+                        } else {
+                            updateTransform();
+                        }
+                    } else {
+                        curScale -= 0.01;
+                        if(curScale < 1) {
+                            curScale = 1;
+                            expand = true;
+                        } else {
+                            updateTransform();
+                        }
+                    }
+
+                }
+
+                setInterval(updatePosition,timeInt);
+                setInterval(updateAngle,timeInt);
+                setInterval(updateScale,timeInt);
+            });
+
+        });
+    </script>
+</head>
+<body>
+<div class="btn" id="start_stop">start</div>
+<div class="square"></div>
+
+</body>
+</html>

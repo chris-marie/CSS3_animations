@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            background-color: black;
+            perspective: 300px;
+            transform-style: preserve-3d;
+        }
+        #container {
+            background-image: url(DahlZamara.jpg);
+            width: 200px;
+            height: 263px;
+            position: absolute;
+
+            left: calc(50% - 100px);
+            top: 100px;
+            transform-origin: 0% 0%;
+        }
+
+        .rotate_z {
+            transform: rotateZ(45deg);
+            transition: transform 250ms ease;
+        }
+
+        .rotate_x {
+            transform: rotateX(45deg);
+            transition: transform 250ms ease;
+        }
+
+        .rotate_y {
+            transform: rotateY(45deg);
+            transition: transform 250ms ease;
+        }
+        .reset {
+            transform: rotate(0deg);
+            transition: transform 250ms ease;
+        }
+
+        .animate_z {
+            animation: kfz 1s ease infinite alternate;
+            transform-origin: 50% 50%;
+        }
+
+        @keyframes kfz {
+            from {
+                transform: rotateZ(0deg);
+            }
+            to {
+                transform: rotateZ(360deg);
+            }
+        }
+
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded',function () {
+            var buttons = Array.prototype.slice.call(document.querySelectorAll('button'));
+            var classes = ['rotate_z','rotate_x','rotate_y','animate_z','reset'];
+
+            var div = document.querySelector('#container');
+
+            for (var i = 0, len = buttons.length; i < len; i++) {
+                buttons[i].dataset.index = i;
+                buttons[i].addEventListener('click', function () {
+                    console.log('clicked ',classes[+this.dataset.index]);
+                    div.className = '';
+                    div.classList.toggle(classes[+this.dataset.index]);
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+<div id="container"></div>
+<button id="z">d3_z</button>
+<button id="x">d3_x</button>
+<button id="y">d3_y</button>
+<button id="animate_z">animate z</button>
+<button id="reset">reset</button>
+</body>
+</html>

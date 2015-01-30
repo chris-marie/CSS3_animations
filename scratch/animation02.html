@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-        html, body {
-            height: 100%;
-        }
+
         div {
             width: 100px;
             height: 100px;
             margin: 100px auto;
             background-color: red; color: darkred;
             transform: translate(0) rotate(0deg) scale(1);
-            transition: transform 1500ms ease;
+            transition: transform 500ms ease;
         }
         @keyframes kf_color {
             0% {background-color: red; color: darkred; font-size: 1em;}
@@ -39,8 +37,8 @@
             }
         }
 
-        .animate_transform {
-            animation: kf_transform 2s 200ms infinite normal;
+        div.animation_transform {
+            animation: kf_transform 2s infinite normal;
         }
 
         /*
